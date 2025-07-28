@@ -176,3 +176,6 @@ tags
 
 # wandb
 wandb
+
+# output
+mv_kontext/output

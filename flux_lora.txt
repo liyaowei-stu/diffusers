@@ -1,0 +1,323 @@
+FluxTransformer2DModel(
+  (pos_embed): FluxPosEmbed()
+  (time_text_embed): CombinedTimestepGuidanceTextProjEmbeddings(
+    (time_proj): Timesteps()
+    (timestep_embedder): TimestepEmbedding(
+      (linear_1): Linear(in_features=256, out_features=3072, bias=True)
+      (act): SiLU()
+      (linear_2): Linear(in_features=3072, out_features=3072, bias=True)
+    )
+    (guidance_embedder): TimestepEmbedding(
+      (linear_1): Linear(in_features=256, out_features=3072, bias=True)
+      (act): SiLU()
+      (linear_2): Linear(in_features=3072, out_features=3072, bias=True)
+    )
+    (text_embedder): PixArtAlphaTextProjection(
+      (linear_1): Linear(in_features=768, out_features=3072, bias=True)
+      (act_1): SiLU()
+      (linear_2): Linear(in_features=3072, out_features=3072, bias=True)
+    )
+  )
+  (context_embedder): Linear(in_features=4096, out_features=3072, bias=True)
+  (x_embedder): lora.Linear(
+    (base_layer): Linear(in_features=64, out_features=3072, bias=True)
+    (lora_dropout): ModuleDict(
+      (default): Identity()
+    )
+    (lora_A): ModuleDict(
+      (default): Linear(in_features=64, out_features=64, bias=False)
+    )
+    (lora_B): ModuleDict(
+      (default): Linear(in_features=64, out_features=3072, bias=False)
+    )
+    (lora_embedding_A): ParameterDict()
+    (lora_embedding_B): ParameterDict()
+    (lora_magnitude_vector): ModuleDict()
+  )
+  (transformer_blocks): ModuleList(
+    (0-18): 19 x FluxTransformerBlock(
+      (norm1): AdaLayerNormZero(
+        (silu): SiLU()
+        (linear): Linear(in_features=3072, out_features=18432, bias=True)
+        (norm): LayerNorm((3072,), eps=1e-06, elementwise_affine=False)
+      )
+      (norm1_context): AdaLayerNormZero(
+        (silu): SiLU()
+        (linear): Linear(in_features=3072, out_features=18432, bias=True)
+        (norm): LayerNorm((3072,), eps=1e-06, elementwise_affine=False)
+      )
+      (attn): Attention(
+        (norm_q): RMSNorm()
+        (norm_k): RMSNorm()
+        (to_q): lora.Linear(
+          (base_layer): Linear(in_features=3072, out_features=3072, bias=True)
+          (lora_dropout): ModuleDict(
+            (default): Identity()
+          )
+          (lora_A): ModuleDict(
+            (default): Linear(in_features=3072, out_features=64, bias=False)
+          )
+          (lora_B): ModuleDict(
+            (default): Linear(in_features=64, out_features=3072, bias=False)
+          )
+          (lora_embedding_A): ParameterDict()
+          (lora_embedding_B): ParameterDict()
+          (lora_magnitude_vector): ModuleDict()
+        )
+        (to_k): lora.Linear(
+          (base_layer): Linear(in_features=3072, out_features=3072, bias=True)
+          (lora_dropout): ModuleDict(
+            (default): Identity()
+          )
+          (lora_A): ModuleDict(
+            (default): Linear(in_features=3072, out_features=64, bias=False)
+          )
+          (lora_B): ModuleDict(
+            (default): Linear(in_features=64, out_features=3072, bias=False)
+          )
+          (lora_embedding_A): ParameterDict()
+          (lora_embedding_B): ParameterDict()
+          (lora_magnitude_vector): ModuleDict()
+        )
+        (to_v): lora.Linear(
+          (base_layer): Linear(in_features=3072, out_features=3072, bias=True)
+          (lora_dropout): ModuleDict(
+            (default): Identity()
+          )
+          (lora_A): ModuleDict(
+            (default): Linear(in_features=3072, out_features=64, bias=False)
+          )
+          (lora_B): ModuleDict(
+            (default): Linear(in_features=64, out_features=3072, bias=False)
+          )
+          (lora_embedding_A): ParameterDict()
+          (lora_embedding_B): ParameterDict()
+          (lora_magnitude_vector): ModuleDict()
+        )
+        (add_k_proj): lora.Linear(
+          (base_layer): Linear(in_features=3072, out_features=3072, bias=True)
+          (lora_dropout): ModuleDict(
+            (default): Identity()
+          )
+          (lora_A): ModuleDict(
+            (default): Linear(in_features=3072, out_features=64, bias=False)
+          )
+          (lora_B): ModuleDict(
+            (default): Linear(in_features=64, out_features=3072, bias=False)
+          )
+          (lora_embedding_A): ParameterDict()
+          (lora_embedding_B): ParameterDict()
+          (lora_magnitude_vector): ModuleDict()
+        )
+        (add_v_proj): lora.Linear(
+          (base_layer): Linear(in_features=3072, out_features=3072, bias=True)
+          (lora_dropout): ModuleDict(
+            (default): Identity()
+          )
+          (lora_A): ModuleDict(
+            (default): Linear(in_features=3072, out_features=64, bias=False)
+          )
+          (lora_B): ModuleDict(
+            (default): Linear(in_features=64, out_features=3072, bias=False)
+          )
+          (lora_embedding_A): ParameterDict()
+          (lora_embedding_B): ParameterDict()
+          (lora_magnitude_vector): ModuleDict()
+        )
+        (add_q_proj): lora.Linear(
+          (base_layer): Linear(in_features=3072, out_features=3072, bias=True)
+          (lora_dropout): ModuleDict(
+            (default): Identity()
+          )
+          (lora_A): ModuleDict(
+            (default): Linear(in_features=3072, out_features=64, bias=False)
+          )
+          (lora_B): ModuleDict(
+            (default): Linear(in_features=64, out_features=3072, bias=False)
+          )
+          (lora_embedding_A): ParameterDict()
+          (lora_embedding_B): ParameterDict()
+          (lora_magnitude_vector): ModuleDict()
+        )
+        (to_out): ModuleList(
+          (0): lora.Linear(
+            (base_layer): Linear(in_features=3072, out_features=3072, bias=True)
+            (lora_dropout): ModuleDict(
+              (default): Identity()
+            )
+            (lora_A): ModuleDict(
+              (default): Linear(in_features=3072, out_features=64, bias=False)
+            )
+            (lora_B): ModuleDict(
+              (default): Linear(in_features=64, out_features=3072, bias=False)
+            )
+            (lora_embedding_A): ParameterDict()
+            (lora_embedding_B): ParameterDict()
+            (lora_magnitude_vector): ModuleDict()
+          )
+          (1): Dropout(p=0.0, inplace=False)
+        )
+        (to_add_out): lora.Linear(
+          (base_layer): Linear(in_features=3072, out_features=3072, bias=True)
+          (lora_dropout): ModuleDict(
+            (default): Identity()
+          )
+          (lora_A): ModuleDict(
+            (default): Linear(in_features=3072, out_features=64, bias=False)
+          )
+          (lora_B): ModuleDict(
+            (default): Linear(in_features=64, out_features=3072, bias=False)
+          )
+          (lora_embedding_A): ParameterDict()
+          (lora_embedding_B): ParameterDict()
+          (lora_magnitude_vector): ModuleDict()
+        )
+        (norm_added_q): RMSNorm()
+        (norm_added_k): RMSNorm()
+      )
+      (norm2): LayerNorm((3072,), eps=1e-06, elementwise_affine=False)
+      (ff): FeedForward(
+        (net): ModuleList(
+          (0): GELU(
+            (proj): lora.Linear(
+              (base_layer): Linear(in_features=3072, out_features=12288, bias=True)
+              (lora_dropout): ModuleDict(
+                (default): Identity()
+              )
+              (lora_A): ModuleDict(
+                (default): Linear(in_features=3072, out_features=64, bias=False)
+              )
+              (lora_B): ModuleDict(
+                (default): Linear(in_features=64, out_features=12288, bias=False)
+              )
+              (lora_embedding_A): ParameterDict()
+              (lora_embedding_B): ParameterDict()
+              (lora_magnitude_vector): ModuleDict()
+            )
+          )
+          (1): Dropout(p=0.0, inplace=False)
+          (2): lora.Linear(
+            (base_layer): Linear(in_features=12288, out_features=3072, bias=True)
+            (lora_dropout): ModuleDict(
+              (default): Identity()
+            )
+            (lora_A): ModuleDict(
+              (default): Linear(in_features=12288, out_features=64, bias=False)
+            )
+            (lora_B): ModuleDict(
+              (default): Linear(in_features=64, out_features=3072, bias=False)
+            )
+            (lora_embedding_A): ParameterDict()
+            (lora_embedding_B): ParameterDict()
+            (lora_magnitude_vector): ModuleDict()
+          )
+        )
+      )
+      (norm2_context): LayerNorm((3072,), eps=1e-06, elementwise_affine=False)
+      (ff_context): FeedForward(
+        (net): ModuleList(
+          (0): GELU(
+            (proj): lora.Linear(
+              (base_layer): Linear(in_features=3072, out_features=12288, bias=True)
+              (lora_dropout): ModuleDict(
+                (default): Identity()
+              )
+              (lora_A): ModuleDict(
+                (default): Linear(in_features=3072, out_features=64, bias=False)
+              )
+              (lora_B): ModuleDict(
+                (default): Linear(in_features=64, out_features=12288, bias=False)
+              )
+              (lora_embedding_A): ParameterDict()
+              (lora_embedding_B): ParameterDict()
+              (lora_magnitude_vector): ModuleDict()
+            )
+          )
+          (1): Dropout(p=0.0, inplace=False)
+          (2): lora.Linear(
+            (base_layer): Linear(in_features=12288, out_features=3072, bias=True)
+            (lora_dropout): ModuleDict(
+              (default): Identity()
+            )
+            (lora_A): ModuleDict(
+              (default): Linear(in_features=12288, out_features=64, bias=False)
+            )
+            (lora_B): ModuleDict(
+              (default): Linear(in_features=64, out_features=3072, bias=False)
+            )
+            (lora_embedding_A): ParameterDict()
+            (lora_embedding_B): ParameterDict()
+            (lora_magnitude_vector): ModuleDict()
+          )
+        )
+      )
+    )
+  )
+  (single_transformer_blocks): ModuleList(
+    (0-37): 38 x FluxSingleTransformerBlock(
+      (norm): AdaLayerNormZeroSingle(
+        (silu): SiLU()
+        (linear): Linear(in_features=3072, out_features=9216, bias=True)
+        (norm): LayerNorm((3072,), eps=1e-06, elementwise_affine=False)
+      )
+      (proj_mlp): Linear(in_features=3072, out_features=12288, bias=True)
+      (act_mlp): GELU(approximate='tanh')
+      (proj_out): Linear(in_features=15360, out_features=3072, bias=True)
+      (attn): Attention(
+        (norm_q): RMSNorm()
+        (norm_k): RMSNorm()
+        (to_q): lora.Linear(
+          (base_layer): Linear(in_features=3072, out_features=3072, bias=True)
+          (lora_dropout): ModuleDict(
+            (default): Identity()
+          )
+          (lora_A): ModuleDict(
+            (default): Linear(in_features=3072, out_features=64, bias=False)
+          )
+          (lora_B): ModuleDict(
+            (default): Linear(in_features=64, out_features=3072, bias=False)
+          )
+          (lora_embedding_A): ParameterDict()
+          (lora_embedding_B): ParameterDict()
+          (lora_magnitude_vector): ModuleDict()
+        )
+        (to_k): lora.Linear(
+          (base_layer): Linear(in_features=3072, out_features=3072, bias=True)
+          (lora_dropout): ModuleDict(
+            (default): Identity()
+          )
+          (lora_A): ModuleDict(
+            (default): Linear(in_features=3072, out_features=64, bias=False)
+          )
+          (lora_B): ModuleDict(
+            (default): Linear(in_features=64, out_features=3072, bias=False)
+          )
+          (lora_embedding_A): ParameterDict()
+          (lora_embedding_B): ParameterDict()
+          (lora_magnitude_vector): ModuleDict()
+        )
+        (to_v): lora.Linear(
+          (base_layer): Linear(in_features=3072, out_features=3072, bias=True)
+          (lora_dropout): ModuleDict(
+            (default): Identity()
+          )
+          (lora_A): ModuleDict(
+            (default): Linear(in_features=3072, out_features=64, bias=False)
+          )
+          (lora_B): ModuleDict(
+            (default): Linear(in_features=64, out_features=3072, bias=False)
+          )
+          (lora_embedding_A): ParameterDict()
+          (lora_embedding_B): ParameterDict()
+          (lora_magnitude_vector): ModuleDict()
+        )
+      )
+    )
+  )
+  (norm_out): AdaLayerNormContinuous(
+    (silu): SiLU()
+    (linear): Linear(in_features=3072, out_features=6144, bias=True)
+    (norm): LayerNorm((3072,), eps=1e-06, elementwise_affine=False)
+  )
+  (proj_out): Linear(in_features=3072, out_features=64, bias=True)
+)

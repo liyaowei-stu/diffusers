@@ -1,13 +1,18 @@
+import os
+
 import torch
 from diffusers import FluxKontextPipeline
 from diffusers.utils import load_image
 
-pipe = FluxKontextPipeline.from_pretrained("/group/40033/public_models/FLUX.1-Kontext-dev/", torch_dtype=torch.bfloat16)
-pipe.to("cuda")
-
-input_image = load_image("ic_custom/20250630_223253_new_image_4.png")
+flux_kontext_path = os.getenv("FLUX_KONTEXT") if os.getenv("FLUX_KONTEXT") else "black-forest-labs/FLUX.1-Kontext-dev"
 
 import ipdb; ipdb.set_trace()
+
+pipe = FluxKontextPipeline.from_pretrained(flux_kontext_path, torch_dtype=torch.bfloat16)
+pipe.to("cuda")
+
+input_image = load_image("mv_custom/assets/20250630_223253_new_image_4.png")
+
 
 image = pipe(
   image=input_image,
@@ -15,5 +20,5 @@ image = pipe(
   guidance_scale=3.5
 ).images[0]
 
-image.save("ic_custom/output_soldier.png")
+image.save("mv_custom/output_soldier.png")
 
